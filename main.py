@@ -11,10 +11,13 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Draw")
 
 WHITE = ( 255, 255, 255)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
 
 # Draw Function
 def drawRect():
-    pygame.draw.rect(Surface, color, Rect, width=0): return Rect
+    pygame.draw.line(screen, GREEN, [0, 0], [100, 100], 5)
+    #pygame.draw.rect(screen, RED, [55, 50, 20, 25]): 
 
 # Loop until the user clicks the close button.
 done = False
