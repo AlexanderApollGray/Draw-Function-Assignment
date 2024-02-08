@@ -2,59 +2,48 @@
 #pip install pygame
 
 import pygame
+import sys
 
 pygame.init()
 
-size = (700, 500)
+size = (800, 600)
 screen = pygame.display.set_mode(size)
 
 pygame.display.set_caption("Draw")
 
-BLACK = (0, 0, 0)
-WHITE = ( 255, 255, 255)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
+black = (0, 0, 0)
+white = ( 255, 255, 255)
+red = (255, 0, 0)
+green = (0, 255, 0)
 
-class Stickman:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-    #   self.vx = 0
-    #   self.vy = 0
-    #   self.speed = 5
+def drawStickman(color, x, y, size):
+    pygame.draw.circle(screen, color, (x, y - (size * 20)), size * 4)  # Head
+    pygame.draw.line(screen, color, (x, y), (x, y - (size * 20)), size) # Head to Body
+    pygame.draw.line(screen, color, (x, y), (x - (size * 4), y + (size * 20)), size)  # Body and left leg
+    pygame.draw.line(screen, color, (x, y), (x + (size * 4), y + (size * 20)), size)  # Body and right leg
+    pygame.draw.line(screen, color, (x, y), (x - (size * 8), y - (size * 4)), size)  # Body and left arm
+    pygame.draw.line(screen, color, (x, y), (x + (size * 8), y - (size * 4)), size)  # Body and right arm
 
-    # Draw Function
-    def drawStickman():
-        pygame.draw.circle(screen, BLACK, (self.x, self.y), 20)
-        pygame.draw.line(screen, BLACK, (self.x, self.y + 20), (self.x, self.y + 50), 3)
-        pygame.draw.line(screen, BLACK, (self.x, self.y + 30), (self.x - 10, self.y + 20), 3)
-        pygame.draw.line(screen, BLACK, (self.x, self.y + 30), (self.x + 10, self.y + 20), 3)
-        pygame.draw.line(screen, BLACK, (self.x, self.y + 50), (self.x - 10, self.y + 70), 3)
-        pygame.draw.line(screen, BLACK, (self.x, self.y + 50), (self.x + 10, self.y + 70), 3)
-        
+# Game loop
+while True:
+    for event in pygame.event.get():
 
-        #pygame.draw.line(screen, GREEN, [0, 0], [100, 100], 5)
-        #pygame.draw.rect(screen, RED, [55, 50, 20, 25],2)
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
 
-# Loop until the user clicks the close button.
-done = False
+    # Draw stickman
+    screen.fill(white)
+    drawStickman("green", 400, 300, 5) # Stickman color, X & Y coordinates, and size
 
-# Used to manage how fast the screen updates
-clock = pygame.time.Clock()
-# Main Program Loop 
-while not done:
-    # Main Event loop
-    for event in pygame.event.get(): # User did something
-        if event.type == pygame.QUIT: # If user clicked close
-            done = True # Flag that we are done so we exit this loop
-
-    # Drawing
-    screen.fill(WHITE)
-    drawStickman("RED", 100, 100)
-
+    # Update display
     pygame.display.flip()
 
-    clock.tick(60) # Limited to 60 fps
-
-# Close the window and quit
+# Quit the game
 pygame.quit()
+
+    #pygame.draw.line(screen, color, (x, y + (y / 6)), (x, y - (y / 6)), size) # Body to Head
+    #pygame.draw.line(screen, color, (x, y + (y / 6)), (x - (x / 20), y + (y / 3)), size)  # Body and left leg
+    #pygame.draw.line(screen, color, (x, y + (y / 6)), (x + (x / 20), y + (y / 3)), size)  # Body and right leg
+    #pygame.draw.line(screen, color, (x, y + (y / 15)), (x - (x / 10), y), size)  # Body and left arm
+    #pygame.draw.line(screen, color, (x, y + (y / 15)), (x + (x / 10), y), size)  # Body and right arm
