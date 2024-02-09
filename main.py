@@ -17,10 +17,10 @@ red = (255, 0, 0)
 green = (0, 255, 0)
 
 def drawStickman(color, x, y, size):
-    pygame.draw.circle(screen, color, (x, y - (size * 20)), size * 4)  # Head
-    pygame.draw.line(screen, color, (x, y), (x, y - (size * 20)), size) # Head to Body
-    pygame.draw.line(screen, color, (x, y), (x - (size * 4), y + (size * 20)), size)  # Body and left leg
-    pygame.draw.line(screen, color, (x, y), (x + (size * 4), y + (size * 20)), size)  # Body and right leg
+    pygame.draw.circle(screen, color, (x, y - (size * 10)), size * 4)  # Head
+    pygame.draw.line(screen, color, (x, y + (size * 6)), (x, y - (size * 10)), size) # Head to Body
+    pygame.draw.line(screen, color, (x, y + (size * 6)), (x - (size * 4), y + (size * 20)), size)  # Body and left leg
+    pygame.draw.line(screen, color, (x, y + (size * 6)), (x + (size * 4), y + (size * 20)), size)  # Body and right leg
     pygame.draw.line(screen, color, (x, y), (x - (size * 8), y - (size * 4)), size)  # Body and left arm
     pygame.draw.line(screen, color, (x, y), (x + (size * 8), y - (size * 4)), size)  # Body and right arm
 
@@ -34,7 +34,10 @@ while True:
 
     # Draw stickman
     screen.fill(white)
-    drawStickman("green", 400, 300, 5) # Stickman color, X & Y coordinates, and size
+    drawStickman("black", 400, 300, 10) # Stickman color, X & Y coordinates, and size
+    drawStickman("green", 600, 200, 5)
+    drawStickman("red", 200, 200, 5)
+
 
     # Update display
     pygame.display.flip()
@@ -42,8 +45,3 @@ while True:
 # Quit the game
 pygame.quit()
 
-    #pygame.draw.line(screen, color, (x, y + (y / 6)), (x, y - (y / 6)), size) # Body to Head
-    #pygame.draw.line(screen, color, (x, y + (y / 6)), (x - (x / 20), y + (y / 3)), size)  # Body and left leg
-    #pygame.draw.line(screen, color, (x, y + (y / 6)), (x + (x / 20), y + (y / 3)), size)  # Body and right leg
-    #pygame.draw.line(screen, color, (x, y + (y / 15)), (x - (x / 10), y), size)  # Body and left arm
-    #pygame.draw.line(screen, color, (x, y + (y / 15)), (x + (x / 10), y), size)  # Body and right arm
